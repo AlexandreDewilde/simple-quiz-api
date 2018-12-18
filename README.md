@@ -4,7 +4,7 @@ Just a simple api for quiz in python
 ## Requirements
 python 3.6
 to install requirements : 
-```pip install -m requirements.txt```
+```pip install -r requirements.txt```
 ## Run
 modify config.txt and 
 ```python run.py```
