@@ -6,8 +6,8 @@ python 3.6
 to install requirements : 
 ```pip install -m requirements.txt```
 ## Run
-modify config.py
-```run.py```
+modify config.txt and 
+```python run.py```
 
 ## In the next releases
 create questions in cmd, authentification, ... 
