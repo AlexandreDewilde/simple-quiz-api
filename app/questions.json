@@ -1,0 +1,15 @@
+[
+	{"id": 1,
+	"question":"Who is the president of USA ?",
+	"answer":"Donald Trump",
+	"category": "Political", 
+	"level": 1
+	},
+	{"id": 2,
+	"question" : ".....",
+	"answer":".....",
+	"category":".....", 
+	"level": 1
+	}
+	
+]
