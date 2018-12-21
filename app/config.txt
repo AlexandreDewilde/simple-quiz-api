@@ -1,1 +1,1 @@
-questions.json
+simple_questions.json
