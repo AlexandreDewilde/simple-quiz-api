@@ -1,9 +1,13 @@
-# simple-quiz-api
+# Simple-quiz-api
 Just a simple api for quiz in python
 
-# Requirements
+## Requirements
 python 3.6
-flask and flask-restful
+to install requirements : 
+```pip install -r requirements.txt```
+## Run
+modify config.txt and 
+```python run.py```
 
-# In the next releases
-A gui to create questions, authentification, ... 
+## In the next releases
+create questions in cmd, authentification, ... 
