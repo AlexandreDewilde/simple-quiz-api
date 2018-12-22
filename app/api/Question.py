@@ -54,8 +54,8 @@ class Question:
 		#converts args object to a dict 
 		keys = ['question', 'answer', 'category', 'level']
 		dict_element = {}
-		for nb_plus_1, key in enumerate(keys):
-			dict_element[keys[nb_plus_1 - 1]] = args[key]
+		for key in keys:
+			dict_element[key] = args[key]
 		dict_element['id'] = int(uuid.uuid4())
 		questions_json_file = self.read_question_file()
 		questions_json_file.append(dict_element)
@@ -69,11 +69,15 @@ class Question:
 		parser.add_argument('id', type=int, required=True)
 		args = parser.parse_args()
 		questions_json_file = self.read_question_file()
-		update_questions_json_file = []
+		updated_questions_json_file = []
 		for quest in questions_json_file:
 			if quest['id'] != args['id']:
-				update_questions_json_file.append(quest)
-		self.write_questions_json_file(update_questions_json_file)
+				updated_questions_json_file.append(quest)
+		self.write_questions_json_file(updated_questions_json_file)
 		return {
 			'status' : '200, question deleted'
 		}
+	
+	def update_question(self, dic_change):
+		pass
+	
