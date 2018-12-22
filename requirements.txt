@@ -1,4 +1,3 @@
 flask
 flask-restful
-Flask-HTTPAuth
 Flask-JWT
