@@ -28,15 +28,27 @@ class MultipleChoiceQuestion(Question):
 		}
 
 	def create_question(self):
+		"""create a question and add it in the json file specified in config_mutiplechoice.txt"""
 		parser = reqparse.RequestParser()
 		parser.add_argument('question', type=str, help="the question", required=True)
 		parser.add_argument('choice', action='append', help="choice for the question", required=True)
 		parser.add_argument('answer', type=str, required=True, help="the answer")
+		
 		#category of the questions
 		parser.add_argument('category', type=str)
-		#int between 1 and 3 to define args
+
+		#int between 1 and 3
 		parser.add_argument('level', type=int, help="int between 1 and 3 to define level")
 		args = parser.parse_args()
+
+		#check if  arg level is between 1 and 3
+		try:
+			if args['level'] != None: assert args['level'] < 3, "Level must be between 1 and 3"
+		except AssertionError as error:
+			return {
+				"error" : str(error)
+			}
+
 		#converts args object to a dict 
 		keys = ['question', 'choice', 'answer', 'category', 'level']
 		dict_element = {}

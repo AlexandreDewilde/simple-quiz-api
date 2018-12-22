@@ -1,7 +1,8 @@
 from flask_restful import Resource
 from . Question import Question
 from . MultipleChoiceQuestion import MultipleChoiceQuestion
-
+from flask_jwt import JWT, jwt_required
+from . User import *
 
 class ShowQuestion(Resource):
 	def get(self, question_id):
@@ -12,9 +13,11 @@ class ShowMultipleChoiceQuestion(Resource):
 		return MultipleChoiceQuestion().show_question(question_id)
 
 class CreateQuestion(Resource):
+	@jwt_required()
 	def post(self):
 		return Question().create_question()
 class CreateMultipleChoiceQuestion(Resource):
+	@jwt_required()
 	def post(self):
 		return MultipleChoiceQuestion().create_question()
 
