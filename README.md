@@ -1,7 +1,6 @@
 # Simple-quiz-api
 Simple flask app wich run a server with an api implemented
 ## Features
-* JWT authentification 
 * Multiple choice question
 * Simple Choice Question
 ## Requirements
@@ -20,9 +19,7 @@ go in app folder and run in a cmd
 ### To show a question with the id provided (Require no auth) 
 ```http://<your_url>/show-question/<id>```  
 return json 
-### To get the auth
-```$ curl -X POST http://localhost:5000/auth ' -H "Accept: application/json" -d '{"username": "admin","password": "admin"}'  ```
 ### To create a new question
-```$ curl -X POST http://localhost:5000/create-question/ -H "Authorization: JWT <your token> -d "question=<question>" -d "answer=<answer>" -d "level=<>" -d "category=<>"``` and argument (POST method) question, answer, category, level (int between 1 and 3), it returns json 
+```$ curl -X POST http://localhost:5000/create-question/ -d "question=<question>" -d "answer=<answer>" -d "level=<>" -d "category=<>"``` and argument (POST method) question, answer, category, level (int between 1 and 3), it returns json 
 ## In the next releases
 authentification, update question, exception ... 
