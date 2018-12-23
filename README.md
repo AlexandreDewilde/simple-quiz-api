@@ -19,6 +19,6 @@ go in app folder and run in a cmd
 ### To show a question with the id provided (Require no auth) 
 ```http://<your_url>/show-question/<id>```  
 ### To create a new question
-```$ curl -X POST http://localhost:5000/create-question/ -d "question=<question>" -d "answer=<answer>" -d "level=<>" -d "category=<>"``` and argument (POST method) question, answer, category, level (int between 1 and 3), it returns json 
+```$ curl -X POST http://localhost:5000/add-question/ -d "question=<question>" -d "answer=<answer>" -d "level=<>" -d "category=<>"``` and argument (POST method) question, answer, category, level (int between 1 and 3), it returns json 
 ## In the next releases
 authentification, update question, exception ... 

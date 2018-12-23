@@ -42,7 +42,7 @@ class Question:
 			'status': '404'
 		}
 	
-	def create_question(self):
+	def add_question_args(self):
 		"""create a question and add it in the json file specified in config.txt"""
 		parser = reqparse.RequestParser()
 		parser.add_argument('question', type=str, help="the question", required=True)
@@ -76,8 +76,11 @@ class Question:
 		for key in keys:
 			dict_element[key] = args[key]
 		dict_element['id'] = int(uuid.uuid4())
+		return dict_element
 
-		#rewrite file with the added question"
+	def add_question(self):
+		"rewrite file with the added question and args"
+		dict_element = self.add_question_args()
 		questions_json_file = self.read_question_file()
 		questions_json_file.append(dict_element)
 		self.write_questions_json_file(questions_json_file)

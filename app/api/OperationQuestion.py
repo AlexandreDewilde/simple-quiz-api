@@ -14,7 +14,7 @@ class ShowMultipleChoiceQuestion(Resource):
 
 class CreateQuestion(Resource):
 	def post(self):
-		return Question().create_question()
+		return Question().add_question()
 		
 class CreateMultipleChoiceQuestion(Resource):
 	def post(self):

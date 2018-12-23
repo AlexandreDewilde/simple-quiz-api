@@ -1,2 +1,4 @@
 #dir to ignore
 app/api/__pycache__/
+tests/__pycache__/
+tests/.pytest_cache/
