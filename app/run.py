@@ -12,9 +12,9 @@ api.add_resource(CreateQuestion, '/', '/add-question/')
 api.add_resource(DeleteQuestion, '/', '/delete-question/')
 
 #add to route classes for mutilple choice question
-api.add_resource(CreateMultipleChoiceQuestion, '/', '/add-multi-choice-question/')
+api.add_resource(CreateMultipleChoiceQuestion, '/', '/add-multiple-choice-question/')
 api.add_resource(ShowMultipleChoiceQuestion, '/show-multiple-choice-question/<int:question_id>')
-api.add_resource(DeleteMultipleChoiceQuestion, '/', '/delete-multi-choice-question/')
+api.add_resource(DeleteMultipleChoiceQuestion, '/', '/delete-multiple-choice-question/')
 
 if __name__ == "__main__":
 	app.run(debug=True)
