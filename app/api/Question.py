@@ -57,10 +57,17 @@ class Question:
 
 		#check if arg level is between 1 and 3
 		try:
-			if args['level'] != None: assert args['level'] < 3, "Level must be between 1 and 3"
+			if args['level'] != None: 
+				args['level'] = int(args['level'])
+				assert args['level'] < 3, "Level must be between 1 and 3"
+				assert args['level'] > 1, "Level must be between 1 and 3"
 		except AssertionError as error:
 			return {
 				"error" : str(error)
+			}
+		except:
+			return {
+				"error" : "unknow"
 			}
 
 		#create dict_element with the args provided in POST and add random id
