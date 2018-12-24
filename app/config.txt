@@ -1,1 +1,0 @@
-question_folder/simple_questions.json

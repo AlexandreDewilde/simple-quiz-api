@@ -1,20 +1,53 @@
-import flask
-from flask_restful import Api
-from api.OperationQuestion import *
+from flask import jsonify, Flask, request
+from api.Question import Question
+from api.MultipleChoiceQuestion import MultipleChoiceQuestion
+import json 
 
-#create instance of flask
-app = flask.Flask(__name__)
-api = Api(app)
+
+#create instance of flaskq
+app = Flask(__name__)
 
 #add to route the classes for simple question
-api.add_resource(ShowQuestion, '/', '/show-question/<int:question_id>')
-api.add_resource(CreateQuestion, '/', '/add-question/')
-api.add_resource(DeleteQuestion, '/', '/delete-question/')
+@app.route("/show-all-question")
+def show_all_question():
+	return jsonify(Question().show_all_question())
+
+@app.route('/show-question/<int:question_id>')
+def show_question(question_id):
+	return jsonify(Question().show_question(question_id))
+
+@app.route('/add-question', methods=['POST'])
+def add_question():
+	post_data = request.data
+	data = json.loads(post_data)
+	return jsonify(Question().add_question(data))
+
+@app.route('/delete-question', methods=['POST'])
+def delete_question():
+	data = request.data
+	question_id = json.loads(data)['id']
+	return jsonify(Question().delete_question(question_id))
+
 
 #add to route classes for mutilple choice question
-api.add_resource(CreateMultipleChoiceQuestion, '/', '/add-multiple-choice-question/')
-api.add_resource(ShowMultipleChoiceQuestion, '/show-multiple-choice-question/<int:question_id>')
-api.add_resource(DeleteMultipleChoiceQuestion, '/', '/delete-multiple-choice-question/')
+@app.route("/show-all-multiple-choice-question")
+def show_all_multiple_choice_question():
+	return jsonify(MultipleChoiceQuestion().show_all_question())
+
+@app.route('/show-multiple-choice-question', methods=['GET'])
+def show_multiple_choice_question(question_id):
+	return jsonify(MultipleChoiceQuestion().show_question(question_id))
+
+@app.route('/add_multiple-choice-question', methods=['POST'])
+def add_multiple_choice_question():
+	post_data = request.data
+	data = json.loads(post_data)
+	return jsonify(MultipleChoiceQuestion().add_question(data))
+
+@app.route('/delete-multiple-choice-question', methods=['POST'])
+def delete_multiple_choice_question():
+	question_id = request.form.get('id')
+	return jsonify(MultipleChoiceQuestion().delete_question(question_id))
 
 if __name__ == "__main__":
 	app.run(debug=True)

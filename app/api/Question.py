@@ -1,5 +1,4 @@
 import json
-from flask_restful import reqparse
 import uuid
 
 
@@ -7,9 +6,9 @@ class Question:
 
 	def path_to_file_question(self):
 		"""find the path where is located the questions file"""
-		with open('config.txt', 'r') as file:
-			path_to_file = file.read()
-		return path_to_file
+		with open('config.json', 'r') as file:
+			file = json.load(file)
+		return file["simple_question_path"]
 	
 	def read_question_file(self):
 		"""open and copy the questions file"""
@@ -26,61 +25,34 @@ class Question:
 
 	def show_question(self, question_id):
 		"""return the question according to the question_id provided"""
+		#open and read json file
 		question_file = self.read_question_file()
+
+		#find question in the json file
 		for dic_quest in question_file:
 			if dic_quest['id'] == question_id:
-				question = dic_quest['question']
-				answer = dic_quest['answer']
-				category = dic_quest['category']
 				return {
 					'status': '200',
-					'question': question,
-					'answer': answer,
-					'category': category
+					'question': dic_quest['question'],
+					'answer': dic_quest['answer'],
+					'category':dic_quest['category'],
+					'level': dic_quest['level']
 				}
+
+		#if the id is not in the json it returns 404
 		return {
 			'status': '404'
 		}
-	
-	def add_question_args(self):
-		"""create a question and add it in the json file specified in config.txt"""
-		parser = reqparse.RequestParser()
-		parser.add_argument('question', type=str, help="the question", required=True)
-		parser.add_argument('answer', type=str, required=True, help="the answer")
-		
-		#category of the questions
-		parser.add_argument('category', type=str)
 
-		#int between 1 and 3
-		parser.add_argument('level', type=int, help="int between 1 and 3 to define level")
-		args = parser.parse_args()
+	def show_all_question(self):
+		return self.read_question_file()
 
-		#check if arg level is between 1 and 3
-		try:
-			if args['level'] != None: 
-				args['level'] = int(args['level'])
-				assert args['level'] < 3, "Level must be between 1 and 3"
-				assert args['level'] > 1, "Level must be between 1 and 3"
-		except AssertionError as error:
-			return {
-				"error" : str(error)
-			}
-		except:
-			return {
-				"error" : "unknow"
-			}
-
-		#create dict_element with the args provided in POST and add random id
-		keys = ['question', 'answer', 'category', 'level']
-		dict_element = {}
-		for key in keys:
-			dict_element[key] = args[key]
-		dict_element['id'] = int(uuid.uuid4())
-		return dict_element
-
-	def add_question(self):
+	def add_question(self, dict_element):
 		"rewrite file with the added question and args"
-		dict_element = self.add_question_args()
+		#generate id
+		dict_element['id'] = int(uuid.uuid4())
+
+		#open, read and write the new question in json file
 		questions_json_file = self.read_question_file()
 		questions_json_file.append(dict_element)
 		self.write_questions_json_file(questions_json_file)
@@ -89,21 +61,24 @@ class Question:
 			'status' : '200 question added'
 		}
 
-	def delete_question(self):
+	def delete_question(self, id):
 		"""Delete question with the id provided"""
-		parser = reqparse.RequestParser()
-		parser.add_argument('id', type=int, required=True)
-		args = parser.parse_args()
+		#read json file
 		questions_json_file = self.read_question_file()
+
+		#create a new list with the question deleted
 		updated_questions_json_file = []
 		for quest in questions_json_file:
-			if quest['id'] != args['id']:
+			if quest['id'] != id:
 				updated_questions_json_file.append(quest)
 		self.write_questions_json_file(updated_questions_json_file)
+
+		#returns OK
 		return {
 			'status' : '200, question deleted'
 		}
-	
+
+	#in the next releases
 	def update_question(self, dic_change):
 		"""Update question, answer, ..."""
 		pass

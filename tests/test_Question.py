@@ -15,6 +15,7 @@ class TestQuestionRequest:
             "question":"Who is the presidents of USA ?",
             "answer":"Donald Trump",
             "category":"Political",
+            "level":1
         }
     def mock_path_to_file_question(self):
         return 'question.json'
@@ -27,7 +28,7 @@ class TestQuestionRequest:
             "level":1
             },
             {
-            "id":1,
+            "id":2,
             "question":"Who is the presidents of USA ?",
             "answer":"Donald Trump",
             "category":"Political",
@@ -36,13 +37,11 @@ class TestQuestionRequest:
         ]
     def test_ResultsShowQuestion(self, monkeypatch, tmpdir):       
 
-        
         monkeypatch.setattr(Question, 'read_question_file', self.mockread_file)
         question = Question()
         assert question.show_question(1) == self.simple_question()
 
     def test_ResultsCreateQuestion(self, monkeypatch):
-        monkeypatch.setattr(Question, 'add_question_args', self.simple_question)
         monkeypatch.setattr(Question, 'path_to_file_question', self.mock_path_to_file_question)
         question = Question()
-        assert question.add_question() == {'status' : '200 question added'}
+        assert question.add_question(self.simple_question()) == {'status' : '200 question added'}
