@@ -42,11 +42,14 @@ def show_multiple_choice_question(question_id):
 def add_multiple_choice_question():
 	post_data = request.data
 	data = json.loads(post_data)
+	if "choice" not in data:
+		return jsonify({"status":"you must specify a list of choice"})
 	return jsonify(MultipleChoiceQuestion().add_question(data))
 
-@app.route('/delete-multiple-choice-question', methods=['POST'])
+@app.route('/delete_multiple-choice-question', methods=['POST'])
 def delete_multiple_choice_question():
-	question_id = request.form.get('id')
+	data = request.data
+	question_id = json.loads(data)['id']
 	return jsonify(MultipleChoiceQuestion().delete_question(question_id))
 
 if __name__ == "__main__":
