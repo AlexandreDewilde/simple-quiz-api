@@ -18,6 +18,7 @@ Each question is organize as the example in the next lines:
 
 * Question
 * Multiple Choice Question
+* JWT token
 
 ## Requirements
 
@@ -56,6 +57,25 @@ python ./run.py
 
 ## Usage
 
+## JWT Token
+
+you can change if auth is needed in decorator before each function. You should change the JWT-secret-key  
+To get the token:
+
+``` bash
+curl -X GET \
+  http://<your-url>/auth \
+  -d '{"username":"test","password":"test"}'
+```
+
+it returns
+
+``` bash
+{
+    "jwt": "<token>"
+}
+```
+
 ### To show all question
 
 ``` bash
@@ -75,6 +95,7 @@ curl -X GET \
 ``` bash
 curl -X POST \
   http://127.0.0.1:5000/add-question \
+  -H 'Authorization: Bearer <your token>' \
   -d '{
     "question":"<your-question>",
     "answer":"<your answer>",
@@ -94,6 +115,7 @@ It returns json, if the question added:
 ``` bash
 curl -X POST \
   http://127.0.0.1:5000/delete-question \
+  -H 'Authorization: Bearer <your token>' \
   -d '{
     "id":<int between 1 and 3>
 }'
@@ -104,8 +126,7 @@ curl -X POST \
 ``` bash
 curl -X POST \
   http://127.0.0.1:5000/add_multiple-choice-question \
-  -H 'Postman-Token: 10d64671-f6e0-4ddd-aa88-f52ab0501d10' \
-  -H 'cache-control: no-cache' \
+    -H 'Authorization: Bearer <your token>' \
   -d '{
     "question":"<your-question>",
     "answer":"<your answer>",
@@ -125,4 +146,4 @@ Same for simple question but the url is for
 
 ## In the next releases
 
-Show all questions, Oauth, tests, update a question, ...
+Tests
