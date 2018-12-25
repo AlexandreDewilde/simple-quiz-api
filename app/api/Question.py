@@ -99,11 +99,30 @@ class Question:
 
 		#returns OK
 		return {
-			'status' : '200, question deleted'
+			"status" : "200, question deleted"
 		}
 
 	#in the next releases
 	def update_question(self, dic_change):
 		"""Update question, answer, ..."""
-		pass
+		try:
+			assert id not in dic_change, "Miss ID"
+			keys =  ["category", "level", "question", "answer", "choice"]
+			updated_list = []
+			for dic in self.read_question_file():
+				if dic["id"] == dic_change["id"]:
+					for key in keys:
+						if key in dic_change:
+							dic[key] = dic_change[key]
+				updated_list.append(dic)
+		except AssertionError as assert_error:
+			return {
+				"status": f"error : {assert_error}"
+			}
+		self.write_questions_json_file(updated_list)
+		return {
+			"status":"200 question updated"
+		}
+
+
 	
