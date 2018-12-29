@@ -65,6 +65,7 @@ To get the token:
 ``` bash
 curl -X GET \
   http://<your-url>/auth \
+  -H 'Content-Type: application/json' \
   -d '{"username":"test","password":"test"}'
 ```
 
@@ -95,6 +96,8 @@ curl -X GET \
 ``` bash
 curl -X POST \
   http://127.0.0.1:5000/add-question \
+  
+  -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <your token>' \
   -d '{
     "question":"<your-question>",
@@ -115,7 +118,9 @@ It returns json, if the question added:
 ``` bash
 curl -X POST \
   http://127.0.0.1:5000/delete-question \
+  -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <your token>' \
+  
   -d '{
     "id":<int between 1 and 3>
 }'
@@ -126,7 +131,8 @@ curl -X POST \
 ``` bash
 curl -X POST \
   http://127.0.0.1:5000/add_multiple-choice-question \
-    -H 'Authorization: Bearer <your token>' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer <your token>' \
   -d '{
     "question":"<your-question>",
     "answer":"<your answer>",
