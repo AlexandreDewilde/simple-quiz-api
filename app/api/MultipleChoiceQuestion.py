@@ -1,6 +1,4 @@
 from api.Question import Question
-from flask_restful import reqparse
-import uuid
 import json
 
 

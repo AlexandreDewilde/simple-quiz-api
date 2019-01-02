@@ -1,8 +1,8 @@
+import json 
 from flask import jsonify, Flask, request
 from api.Question import Question
 from api.MultipleChoiceQuestion import MultipleChoiceQuestion
-import json 
-from flask_jwt_simple import JWTManager, jwt_required, create_jwt, get_jwt_identity
+from flask_jwt_simple import JWTManager, jwt_required, create_jwt
 from api import Auth
 
 
@@ -117,4 +117,4 @@ def delete_multiple_choice_question():
 	return jsonify(MultipleChoiceQuestion().delete_question(question_id))
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	app.run(debug=False)

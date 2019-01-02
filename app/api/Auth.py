@@ -1,5 +1,5 @@
-from flask_jwt_simple import JWTManager, jwt_required, create_jwt, get_jwt_identity
-from flask import jsonify, Flask, request
+from flask_jwt_simple import JWTManager, jwt_required, create_jwt
+from flask import jsonify, request
 
 def auth():
 	"""returns tokens to auth"""

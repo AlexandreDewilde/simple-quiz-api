@@ -78,7 +78,7 @@ class Question:
 			'status' : '200 question added'
 		}
 
-	def delete_question(self, id):
+	def delete_question(self, question_id):
 		"""Delete question with the id provided"""
 		#read json file
 		questions_json_file = self.read_question_file()
@@ -87,7 +87,7 @@ class Question:
 		#create a new list with the question deleted
 		updated_questions_json_file = []
 		for quest in questions_json_file:
-			if quest['id'] != id:
+			if quest['id'] != question_id:
 				updated_questions_json_file.append(quest)
 			else:
 				delete_bool = True
@@ -106,7 +106,8 @@ class Question:
 	def update_question(self, dic_change):
 		"""Update question, answer, ..."""
 		try:
-			assert id not in dic_change, "Miss ID"
+			if id not in dic_change:
+				raise AssertionError()
 			keys =  ["category", "level", "question", "answer", "choice"]
 			updated_list = []
 			for dic in self.read_question_file():
