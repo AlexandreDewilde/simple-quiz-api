@@ -1,4 +1,4 @@
 {
     "simple_question_path":"question_folder/simple_questions.json",
-    "multiple_choice_question_path":"question_folder/multichoice_question.json",
+    "multiple_choice_question_path":"question_folder/multichoice_question.json"
 }
