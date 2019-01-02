@@ -1,6 +1,6 @@
 # Simple quiz api
 
-This repostory is a simple flask app wich run a server with an api implemented. Contrib open  
+This repostory is a simple flask app wich run a server with an api implemented.  
 The questions are in json files specified in ```config.txt``` (simple question) and ```config_multichoice.txt``` (multiple choice question)
 Each question is organize as the example in the next lines:
 
@@ -153,3 +153,7 @@ Same for simple question but the url is for
 ## In the next releases
 
 Tests
+
+## Contributing
+
+Feel free to contribute, fork repo add your changes and submit a Pull requests
