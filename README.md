@@ -156,4 +156,4 @@ Tests
 
 ## Contributing
 
-Feel free to contribute, fork repo add your changes and submit a Pull requests
+Feel free to contribute, fork repo add your changes and submit a Pull request
