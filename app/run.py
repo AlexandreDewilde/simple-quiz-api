@@ -31,6 +31,11 @@ def jwt_cond(jwt_required, cond):
 def show_all_question():
 	return jsonify(Question().show_all_question())
 
+@app.route("/show-all-categories")
+@jwt_cond(jwt_required, False)
+def show_categories():
+	return jsonify(Question().show_categories())
+
 @app.route('/show-question/<int:question_id>')
 @jwt_cond(jwt_required, False)
 def show_question(question_id):
