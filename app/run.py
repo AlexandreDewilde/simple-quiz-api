@@ -31,6 +31,7 @@ def jwt_cond(jwt_required, cond):
 def show_all_question():
 	return jsonify(Question().show_all_question())
 
+#show all the categories for the simple questions
 @app.route("/show-all-categories")
 @jwt_cond(jwt_required, False)
 def show_categories():
@@ -80,6 +81,12 @@ def delete_question():
 @jwt_cond(jwt_required, False)
 def show_all_multiple_choice_question():
 	return jsonify(MultipleChoiceQuestion().show_all_question())
+
+#show all categories for multiple choice question
+@app.route('/show-all-categories-multichoice')
+@jwt_cond(jwt_required, False)
+def show_categories_multiple_choice():
+	return jsonify(MultipleChoiceQuestion().show_categories())
 
 @app.route('/show-multiple-choice-question', methods=['GET'])
 @jwt_cond(jwt_required, False)

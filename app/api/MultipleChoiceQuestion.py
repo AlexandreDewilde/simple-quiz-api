@@ -3,6 +3,7 @@ import json
 
 
 class MultipleChoiceQuestion(Question):
+
 	def path_to_file_question(self):
 		#find the path where is located the questions file
 		with open('config.json', 'r') as file:
