@@ -84,6 +84,11 @@ curl -X GET \
   http://<your-url>/show-all-question \
 ```
 
+### To show all simple-question-categories
+```bash
+curl -X GET \
+ http://<your-url>/show-all-categories \
+
 ### To show a question with the id provided
 
 ``` bash
@@ -142,13 +147,14 @@ curl -X POST \
 }'
 ```
 
-### Show all, show and delete multiple choice question
+### Show all, show all categories, show and delete multiple choice question
 
 Same for simple question but the url is for
 
 * del /delete-multiple-choice-question
 * show all /show-all-multiple-choice-question
 * show /show-multiple-choice-question
+* show all categories /show-all-categories-multichoice
 
 ## In the next releases
 
